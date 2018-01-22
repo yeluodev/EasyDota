@@ -18,11 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class EasyDota {
 
-	public static final String BASE_URL = "https://api.steampowered.com/";
+	public static final String BASE_URL_STEAM = "https://api.steampowered.com/";
+	public static final String BASE_URL_OPENAPI = "https://api.opendota.com/api/";
 	public static final String KEY = "896C5BE855FD71215D783D05DB7C7878";
 	public static final String ACCOUNT_ID = "76561198070192227";
 
 	private SteamService steamService;
+	private OpenAPI openAPI;
 
 	private static class EasyDotaHolder{
 		private static final EasyDota instance = new EasyDota();
@@ -34,7 +36,7 @@ public class EasyDota {
 
 	private EasyDota(){
 		HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-		logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+		logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 		OkHttpClient okHttpClient = new OkHttpClient.Builder()
 				.connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
@@ -43,17 +45,29 @@ public class EasyDota {
 				.addInterceptor(logging)//添加其他拦截器
 				.build();
 
-		Retrofit retrofit = new Retrofit.Builder()
+		Retrofit retrofitSteam = new Retrofit.Builder()
 				.addConverterFactory(GsonConverterFactory.create())
 				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-				.baseUrl(BASE_URL)
+				.baseUrl(BASE_URL_STEAM)
 				.client(okHttpClient)
 				.build();
 
-		steamService = retrofit.create(SteamService.class);
+		steamService = retrofitSteam.create(SteamService.class);
+
+		Retrofit retrofitOpenAPI = new Retrofit.Builder()
+				.addConverterFactory(GsonConverterFactory.create())
+				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+				.baseUrl(BASE_URL_OPENAPI)
+				.client(okHttpClient)
+				.build();
+		openAPI = retrofitOpenAPI.create(OpenAPI.class);
 	}
 
 	public SteamService getSteamService(){
 		return steamService;
+	}
+
+	public OpenAPI getOpenAPI() {
+		return openAPI;
 	}
 }

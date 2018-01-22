@@ -84,11 +84,17 @@ public interface SteamService {
      * @param matchesRequested
      * @return
      */
-    @GET("IDOTA2Match_570/GetMatchHistoryBySequenceNum /v1")
+    @GET("IDOTA2Match_570/GetMatchHistoryBySequenceNum/v1")
     Observable<ResponseBody> getMatchHistoryBySequenceNum (
             @Query("key") String key,
             @Query("start_at_match_seq_num") String startAtMatchSeqNum,      //可选
             @Query("matches_requested") String matchesRequested              //可选
+    );
+
+    @GET("ISteamUser/GetPlayerSummaries/v2")
+    Observable<ResponseBody> getPlayerSummaries (
+            @Query("key") String key,
+            @Query("steamids") String steamids      //可选
     );
 
 

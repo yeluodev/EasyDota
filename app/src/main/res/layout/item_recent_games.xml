@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="14dp"
+        android:src="#ffff00"/>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:text="Victory"/>
+
+    <TextView
+        android:id="@+id/tv_level"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Very High"/>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_endtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2 Hours Ago"/>
+
+        <TextView
+            android:id="@+id/tv_gamemode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Draft"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_kda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6.24"/>
+
+        <TextView
+            android:id="@+id/tv_kda_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="16/4/9"/>
+
+    </LinearLayout>
+
+</LinearLayout>

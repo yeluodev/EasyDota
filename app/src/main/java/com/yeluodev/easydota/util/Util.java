@@ -1,5 +1,9 @@
 package com.yeluodev.easydota.util;
 
+import org.json.JSONArray;
+
+import java.util.Collection;
+
 /**
  * 类描述
  * 作者   yeluodev1226
@@ -12,6 +16,7 @@ public class Util {
 
     /**
      * 将指定id转换为steam64位id
+     *
      * @param id
      * @return
      */
@@ -24,5 +29,19 @@ public class Util {
             accountId = Long.parseLong(id) + 61197960265728L;
             return "765" + accountId;
         }
+    }
+
+    public static boolean isEmpty(JSONArray array) {
+        if (array == null || array.length() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isEmpty(Collection collection) {
+        if (collection == null || collection.size() == 0) {
+            return true;
+        }
+        return false;
     }
 }
